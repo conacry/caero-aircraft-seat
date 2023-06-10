@@ -5,9 +5,9 @@ import org.conacry.caero.domain.primitive.exception.CodedException;
 
 public final class SeatError {
     public static final String SEAT_NUMBER_VALUE_IS_REQUIRED = "3d1f50e6-001";
-    public static final String ILLEGAL_SEAT_NUMBER_VALUE = "3d1f50e6-006";
-    public static final String SEAT_ID_VALUE_IS_REQUIRED = "3d1f50e6-007";
-    public static final String ILLEGAL_SEAT_ID_VALUE = "3d1f50e6-008";
+    public static final String ILLEGAL_SEAT_NUMBER_VALUE = "3d1f50e6-002";
+    public static final String SEAT_ID_VALUE_IS_REQUIRED = "3d1f50e6-003";
+    public static final String ILLEGAL_SEAT_ID_VALUE = "3d1f50e6-004";
 
     public static CodedException errSeatNumberValueIsRequired() {
         var errMsg = "Value to create SeatNumber is required";
