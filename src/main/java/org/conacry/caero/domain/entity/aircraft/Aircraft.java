@@ -10,7 +10,7 @@ public class Aircraft {
     private final Model model;
     private List<Seat> seats;
 
-    public Aircraft(AircraftID aircraftID, Model model) {
+    Aircraft(AircraftID aircraftID, Model model) {
         this.aircraftID = aircraftID;
         this.model = model;
     }
