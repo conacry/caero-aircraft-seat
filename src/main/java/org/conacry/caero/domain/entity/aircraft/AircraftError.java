@@ -33,7 +33,7 @@ public final class AircraftError {
         var errMsg = String.format("Illegal value = '%s' format to create Model", value);
         return new CodedException(ILLEGAL_MODEL_VALUE, errMsg);
     }
-/*--------------------------------------------------------------------------------------------------------------------*/
+
     public static CodedException errAircraftIDIsRequired() {
         var errMsg = "Aircraft ID is required";
         return new CodedException(AIRCRAFT_ID_IS_REQUIRED, errMsg);
