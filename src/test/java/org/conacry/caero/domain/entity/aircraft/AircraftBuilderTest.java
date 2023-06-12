@@ -42,7 +42,7 @@ class AircraftBuilderTest {
     }
 
     @Test
-    void build_SeatsDontSettled_ReturnAircraft() {
+    void build_AllParamsDontSettled_ReturnAircraft() {
         var aircraftID = AircraftID.newID();
         var model = ModelStub.getModel();
         var seats = SeatStub.getSeatList(10);
