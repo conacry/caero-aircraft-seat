@@ -36,7 +36,6 @@ public class AircraftBuilder {
         if(this.model == null){
             throw  AircraftError.errModelIsRequired();
         }
-
     }
 
     private void fillDefaultValues() {

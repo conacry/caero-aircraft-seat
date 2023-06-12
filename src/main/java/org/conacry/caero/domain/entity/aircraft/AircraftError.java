@@ -11,6 +11,9 @@ public final class AircraftError {
     public static final String AIRCRAFT_ID_IS_REQUIRED = "01b85bf5-005";
     public static final String AIRCRAFT_MODEL_IS_REQUIRED = "01b85bf5-006";
 
+    private AircraftError() {
+    }
+
     public static CodedException errAircraftIDValueIsRequired() {
         var errMsg = "Value to create AircraftID is required";
         return new CodedException(AIRCRAFT_ID_VALUE_IS_REQUIRED, errMsg);
@@ -29,9 +32,6 @@ public final class AircraftError {
     public static CodedException errIllegalModelValue(String value) {
         var errMsg = String.format("Illegal value = '%s' format to create Model", value);
         return new CodedException(ILLEGAL_MODEL_VALUE, errMsg);
-    }
-
-    private AircraftError() {
     }
 /*--------------------------------------------------------------------------------------------------------------------*/
     public static CodedException errAircraftIDIsRequired() {
