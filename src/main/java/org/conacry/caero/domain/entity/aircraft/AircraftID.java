@@ -1,5 +1,6 @@
 package org.conacry.caero.domain.entity.aircraft;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public final class AircraftID {
@@ -29,5 +30,23 @@ public final class AircraftID {
 
     public UUID getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        var that = (AircraftID) o;
+        return Objects.equals(value, that.value);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
