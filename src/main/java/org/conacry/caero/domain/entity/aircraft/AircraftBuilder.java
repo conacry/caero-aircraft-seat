@@ -2,10 +2,8 @@ package org.conacry.caero.domain.entity.aircraft;
 
 import org.conacry.caero.domain.entity.seat.Seat;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.UUID;
 
 public class AircraftBuilder {
 
