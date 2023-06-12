@@ -8,6 +8,9 @@ public final class SeatError {
     public static final String ILLEGAL_SEAT_NUMBER_VALUE = "3d1f50e6-002";
     public static final String SEAT_ID_VALUE_IS_REQUIRED = "3d1f50e6-003";
     public static final String ILLEGAL_SEAT_ID_VALUE = "3d1f50e6-004";
+    public static final String SEAT_ID_IS_REQUIRED = "3d1f50e6-005";
+    public static final String SEAT_NUMBER_IS_REQUIRED = "3d1f50e6-006";
+    public static final String SEAT_FARE_CONDITION_IS_REQUIRED = "3d1f50e6-007";
 
     public static CodedException errSeatNumberValueIsRequired() {
         var errMsg = "Value to create SeatNumber is required";
@@ -31,4 +34,18 @@ public final class SeatError {
 
     private SeatError() {
     }
+
+    public static CodedException errSeatIDIsRequired() {
+        var errMsg = "SeatId is required";
+        return new CodedException(SEAT_ID_IS_REQUIRED, errMsg);
+    }
+    public static CodedException errSeatNumberIsRequired() {
+        var errMsg = "Seat number is required";
+        return new CodedException(SEAT_NUMBER_IS_REQUIRED, errMsg);
+    }
+    public static CodedException errSeatFareConditionIsRequired() {
+        var errMsg = "Seat fare condition is required";
+        return new CodedException(SEAT_FARE_CONDITION_IS_REQUIRED, errMsg);
+    }
+
 }
