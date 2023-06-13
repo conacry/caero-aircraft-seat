@@ -10,19 +10,19 @@ public class SeatConfiguration {
     private EconomySeatInfo economySeatInfo;
 
     @Data
-    private static class FirstClassSeatInfo {
+    public static class FirstClassSeatInfo {
         private int rowCount;
         private int seatsPerRow;
     }
 
     @Data
-    private static class BusinessSeatInfo {
+    public static class BusinessSeatInfo {
         private int rowCount;
         private int seatsPerRow;
     }
 
     @Data
-    private static class EconomySeatInfo {
+    public static class EconomySeatInfo {
         private int rowCount;
         private int seatsPerRow;
     }
