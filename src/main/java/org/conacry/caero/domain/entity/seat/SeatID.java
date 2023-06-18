@@ -50,4 +50,11 @@ public final class SeatID {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    @Override
+    public String toString() {
+        return "SeatID{" +
+                "value=" + value +
+                '}';
+    }
 }
