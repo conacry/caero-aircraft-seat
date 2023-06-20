@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class AircraftCreateInfo {
+
     private final String model;
-    private final SeatConfiguration seatConfiguration;
+    private SeatConfiguration seatConfiguration;
 }
