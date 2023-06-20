@@ -13,18 +13,17 @@ public class Aircraft {
     private final Model model;
     private List<Seat> seats;
 
-    private static final HashMap<Integer, String> lettersMap = new HashMap<>();
-    {
-        lettersMap.put(1, "A");
-        lettersMap.put(2, "B");
-        lettersMap.put(3, "C");
-        lettersMap.put(4, "D");
-        lettersMap.put(5, "E");
-        lettersMap.put(6, "F");
-        lettersMap.put(7, "G");
-        lettersMap.put(8, "H");
-        lettersMap.put(9, "I");
-    }
+    private static final Map<Integer, String> lettersMap = Map.ofEntries(
+            Map.entry(1, "A"),
+            Map.entry(2, "B"),
+            Map.entry(3, "C"),
+            Map.entry(4, "D"),
+            Map.entry(5, "E"),
+            Map.entry(6, "F"),
+            Map.entry(7, "G"),
+            Map.entry(8, "H"),
+            Map.entry(9, "I")
+    );
 
     Aircraft(AircraftID aircraftID, Model model, List<Seat> seats) {
         this.aircraftID = aircraftID;
@@ -46,9 +45,6 @@ public class Aircraft {
         var firstClassInfoOpt = seatConfiguration.getFirstClassSeatInfo();
         if (firstClassInfoOpt.isPresent()) {
             var firstClassInfo = firstClassInfoOpt.get();
-            if (!lettersMap.containsKey(firstClassInfo.getSeatsPerRow())) {
-                throw AircraftError.errIllegalSeatsPerRowValue(firstClassInfo.getSeatsPerRow());
-            }
             var firstClassSeats = createSeats(currentRow, firstClassInfo.getRowCount(), firstClassInfo.getSeatsPerRow(), FareCondition.FIRST_CLASS);
             targetSeats.addAll(firstClassSeats);
             currentRow = currentRow + firstClassInfo.getRowCount();
@@ -57,9 +53,6 @@ public class Aircraft {
         var businessInfoOpt = seatConfiguration.getBusinessSeatInfo();
         if (businessInfoOpt.isPresent()) {
             var businessSeatsInfo = businessInfoOpt.get();
-            if (!lettersMap.containsKey(businessSeatsInfo.getSeatsPerRow())) {
-                throw AircraftError.errIllegalSeatsPerRowValue(businessSeatsInfo.getSeatsPerRow());
-            }
             var businessSeats = createSeats(currentRow, businessSeatsInfo.getRowCount(), businessSeatsInfo.getSeatsPerRow(), FareCondition.BUSINESS);
             targetSeats.addAll(businessSeats);
             currentRow = currentRow + businessSeatsInfo.getRowCount();
@@ -68,9 +61,6 @@ public class Aircraft {
         var economyInfoOpt = seatConfiguration.getEconomySeatInfo();
         if (economyInfoOpt.isPresent()) {
             var economySeatInfo = economyInfoOpt.get();
-            if (!lettersMap.containsKey(economySeatInfo.getSeatsPerRow())) {
-                throw AircraftError.errIllegalSeatsPerRowValue(economySeatInfo.getSeatsPerRow());
-            }
             var economySeats = createSeats(currentRow, economySeatInfo.getRowCount(), economySeatInfo.getSeatsPerRow(), FareCondition.ECONOMY);
             targetSeats.addAll(economySeats);
         }
@@ -83,7 +73,7 @@ public class Aircraft {
         var targetSeats = new ArrayList<Seat>();
         for (int i = startWithNumber; i < stopAtRow; i++) {
             for (int j = 1; j <= seatsPerRow; j++) {
-                var letterSeat = lettersMap.get(j);
+                var letterSeat = seatPositionToLetter(j);
                 var seatNumber = String.join("", String.valueOf(i), letterSeat);
                 var seat = new SeatBuilder().
                         seatID(SeatID.newID()).
@@ -94,6 +84,14 @@ public class Aircraft {
             }
         }
         return targetSeats;
+    }
+
+    private String seatPositionToLetter(int position) {
+        if (lettersMap.containsKey(position)) {
+            return lettersMap.get(position);
+        }
+
+        throw AircraftError.errIllegalSeatsPerRowValue(position);
     }
 
     public AircraftID getAircraftID() {
