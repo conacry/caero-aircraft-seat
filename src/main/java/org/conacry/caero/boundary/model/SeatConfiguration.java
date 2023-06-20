@@ -1,6 +1,8 @@
 package org.conacry.caero.boundary.model;
 
-import lombok.Data;
+import lombok.*;
+
+import java.util.Optional;
 
 @Data
 public class SeatConfiguration {
@@ -9,20 +11,32 @@ public class SeatConfiguration {
     private BusinessSeatInfo businessSeatInfo;
     private EconomySeatInfo economySeatInfo;
 
+    public Optional<FirstClassSeatInfo> getFirstClassSeatInfo() {
+        return Optional.ofNullable(firstClassSeatInfo);
+    }
+
+    public Optional<BusinessSeatInfo> getBusinessSeatInfo() {
+        return Optional.ofNullable(businessSeatInfo);
+    }
+
+    public Optional<EconomySeatInfo> getEconomySeatInfo() {
+        return Optional.ofNullable(economySeatInfo);
+    }
+
     @Data
-    private static class FirstClassSeatInfo {
+    public static class FirstClassSeatInfo {
         private int rowCount;
         private int seatsPerRow;
     }
 
     @Data
-    private static class BusinessSeatInfo {
+    public static class BusinessSeatInfo {
         private int rowCount;
         private int seatsPerRow;
     }
 
     @Data
-    private static class EconomySeatInfo {
+    public static class EconomySeatInfo {
         private int rowCount;
         private int seatsPerRow;
     }
