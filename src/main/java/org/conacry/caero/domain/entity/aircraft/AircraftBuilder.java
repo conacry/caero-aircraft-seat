@@ -8,11 +8,9 @@ import java.util.List;
 public class AircraftBuilder {
 
     private AircraftID aircraftID;
-
     private Model model;
-
     private List<Seat> seats;
-
+    private AircraftStatus status;
 
     public AircraftBuilder aircraftID(AircraftID aircraftID){
         this.aircraftID = aircraftID;
@@ -29,12 +27,20 @@ public class AircraftBuilder {
         return this;
     }
 
+    public AircraftBuilder status(AircraftStatus status) {
+        this.status = status;
+        return this;
+    }
+
     private void checkRequiredFields() {
         if(this.aircraftID == null){
             throw AircraftError.errAircraftIDIsRequired();
         }
         if(this.model == null){
-            throw  AircraftError.errModelIsRequired();
+            throw AircraftError.errModelIsRequired();
+        }
+        if (this.status == null) {
+            throw AircraftError.errStatusIsRequired();
         }
     }
 
@@ -51,7 +57,7 @@ public class AircraftBuilder {
         return new Aircraft(
                 this.aircraftID,
                 this.model,
-                this.seats
-        );
+                this.seats,
+                this.status);
     }
 }
