@@ -8,6 +8,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.conacry.caero.domain.entity.aircraft.AircraftStatus.ACTIVE;
+import static org.conacry.caero.domain.entity.aircraft.AircraftStatus.NOT_ACTIVE;
+
 public class Aircraft {
     private final AircraftID aircraftID;
     private final Model model;
@@ -94,6 +97,10 @@ public class Aircraft {
         }
 
         throw AircraftError.errIllegalSeatsPerRowValue(position);
+    }
+
+    public void makeNotActive() {
+        status = AircraftStatus.NOT_ACTIVE;
     }
 
     public AircraftID getAircraftID() {
