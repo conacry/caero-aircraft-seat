@@ -24,17 +24,29 @@ class AircraftBuilderTest {
         var ex = assertThrows(CodedException.class, () -> builder.aircraftID(aircraftID).build());
         assertEquals(AircraftError.AIRCRAFT_MODEL_IS_REQUIRED, ex.getCode());
     }
+    @Test
+    void build_StatusIsNull_ThrowEx() {
+        var aircraftID = AircraftID.newID();
+        var model = ModelStub.getModel();
+        var builder = new AircraftBuilder();
+        var ex = assertThrows(CodedException.class, () -> builder.aircraftID(aircraftID).model(model).build());
+        assertEquals(AircraftError.AIRCRAFT_STATUS_IS_REQUIRED, ex.getCode());
+    }
 
     @Test
     void build_SeatsDontSettled_ReturnAircraftWithEmptySeats() {
         var aircraftID = AircraftID.newID();
         var model = ModelStub.getModel();
         var builder = new AircraftBuilder();
+        var status = AircraftStatus.ACTIVE;
 
-        var aircraft = builder.aircraftID(aircraftID).model(model).build();
+        var aircraft = builder.aircraftID(aircraftID).
+                model(model).
+                status(status).build();
         assertNotNull(aircraft);
         assertEquals(aircraftID, aircraft.getAircraftID());
         assertEquals(model, aircraft.getModel());
+        assertEquals(status, aircraft.getStatus());
 
         var seats = aircraft.getSeats();
         assertNotNull(seats);
@@ -46,11 +58,17 @@ class AircraftBuilderTest {
         var aircraftID = AircraftID.newID();
         var model = ModelStub.getModel();
         var seats = SeatStub.getSeatList(10);
+        var status = AircraftStatus.ACTIVE;
 
-        var aircraft = new AircraftBuilder().aircraftID(aircraftID).model(model).seats(seats).build();
+        var aircraft = new AircraftBuilder().
+                aircraftID(aircraftID).
+                model(model).
+                seats(seats).
+                status(status).build();
         assertNotNull(aircraft);
         assertEquals(aircraftID, aircraft.getAircraftID());
         assertEquals(model, aircraft.getModel());
+        assertEquals(status, aircraft.getStatus());
 
         var actualSeats = aircraft.getSeats();
         assertNotNull(actualSeats);
