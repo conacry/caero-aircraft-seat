@@ -99,7 +99,7 @@ public class Aircraft {
         throw AircraftError.errIllegalSeatsPerRowValue(position);
     }
 
-    private void makeNotActive(AircraftStatus status) {
+    public void makeNotActive() {
         status = AircraftStatus.NOT_ACTIVE;
     }
 
