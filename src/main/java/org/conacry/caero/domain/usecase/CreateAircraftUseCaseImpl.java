@@ -1,5 +1,6 @@
 package org.conacry.caero.domain.usecase;
 
+import jakarta.annotation.Nullable;
 import org.conacry.caero.boundary.model.AircraftCreateInfo;
 import org.conacry.caero.boundary.repository.AircraftRepository;
 import org.conacry.caero.boundary.usecase.CreateAircraftUseCase;
@@ -17,7 +18,7 @@ public class CreateAircraftUseCaseImpl implements CreateAircraftUseCase {
     }
 
     @Override
-    public Aircraft execute(AircraftCreateInfo info) {
+    public Aircraft execute(@Nullable AircraftCreateInfo info) {
         if (info == null) {
             throw UseCaseError.errAircraftCreateInfoRequired();
         }
