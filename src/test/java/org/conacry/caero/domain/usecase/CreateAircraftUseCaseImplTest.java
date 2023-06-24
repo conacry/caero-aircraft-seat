@@ -75,7 +75,7 @@ class CreateAircraftUseCaseTest {
         doThrow(RuntimeException.class).when(aircraftRepo).save(any(Aircraft.class));
 
         var modelStr = "Model";
-        var seatConfig = new SeatConfiguration();
+        var seatConfig = SeatConfigurationStub.getSeatConfiguration();
         var info = new AircraftCreateInfo(modelStr, seatConfig);
 
         assertThrows(RuntimeException.class, () -> createAircraftUseCase.execute(info));
@@ -93,6 +93,3 @@ class CreateAircraftUseCaseTest {
         verify(aircraftRepo, times(1)).save(aircraft);
     }
 }
-
-
-

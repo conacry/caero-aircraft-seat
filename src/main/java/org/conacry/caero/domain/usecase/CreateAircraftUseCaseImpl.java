@@ -1,12 +1,10 @@
 package org.conacry.caero.domain.usecase;
 
+import jakarta.annotation.Nullable;
 import org.conacry.caero.boundary.model.AircraftCreateInfo;
 import org.conacry.caero.boundary.repository.AircraftRepository;
 import org.conacry.caero.boundary.usecase.CreateAircraftUseCase;
-import org.conacry.caero.domain.entity.aircraft.Aircraft;
-import org.conacry.caero.domain.entity.aircraft.AircraftBuilder;
-import org.conacry.caero.domain.entity.aircraft.AircraftID;
-import org.conacry.caero.domain.entity.aircraft.Model;
+import org.conacry.caero.domain.entity.aircraft.*;
 
 public class CreateAircraftUseCaseImpl implements CreateAircraftUseCase {
 
@@ -17,7 +15,7 @@ public class CreateAircraftUseCaseImpl implements CreateAircraftUseCase {
     }
 
     @Override
-    public Aircraft execute(AircraftCreateInfo info) {
+    public Aircraft execute(@Nullable AircraftCreateInfo info) {
         if (info == null) {
             throw UseCaseError.errAircraftCreateInfoRequired();
         }
@@ -31,6 +29,7 @@ public class CreateAircraftUseCaseImpl implements CreateAircraftUseCase {
         var aircraft = new AircraftBuilder().
                 aircraftID(aircraftID).
                 model(model).
+                status(AircraftStatus.ACTIVE).
                 build();
         aircraft.initSeats(info.getSeatConfiguration());
 

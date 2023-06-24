@@ -9,10 +9,12 @@ public final class UseCaseError {
 
     private UseCaseError() {
     }
+
     public static CodedException errAircraftCreateInfoRequired(){
         var errMsg = "Aircraft create info is required";
         return new CodedException(AIRCRAFT_CREATE_INFO_REQUIRED , errMsg);
     }
+
     public static CodedException errAircraftIsAlreadyExisted() {
         var errMsg = "Aircraft is already existed";
         return new CodedException(AIRCRAFT_IS_ALREADY_EXISTED, errMsg);
