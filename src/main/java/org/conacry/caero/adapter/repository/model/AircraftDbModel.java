@@ -1,4 +1,4 @@
-package org.conacry.caero.boundary.repository;
+package org.conacry.caero.adapter.repository.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -21,7 +21,7 @@ public class AircraftDbModel {
     private String model;
 
     @OneToMany
-    @JoinColumn(name = "seat_id", referencedColumnName = "id")
+    @JoinColumn(name = "aircraft_id", referencedColumnName = "id")
     private List<SeatDbModel> seat;
 
 }

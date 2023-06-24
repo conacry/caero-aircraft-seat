@@ -1,4 +1,4 @@
-package org.conacry.caero.boundary.repository;
+package org.conacry.caero.adapter.repository.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -10,7 +10,6 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "seat")
-
 public class SeatDbModel {
 
     @Id
