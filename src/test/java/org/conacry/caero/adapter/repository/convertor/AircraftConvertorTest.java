@@ -1,12 +1,10 @@
 package org.conacry.caero.adapter.repository.convertor;
 
 import org.conacry.caero.adapter.repository.RepositoryError;
-import org.conacry.caero.adapter.repository.model.AircraftDbModel;
 import org.conacry.caero.domain.primitive.exception.CodedException;
+import org.conacry.caero.testdouble.entity.AircraftStub;
 import org.conacry.caero.testdouble.repository.AircraftDbModelStub;
 import org.junit.jupiter.api.Test;
-
-import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -29,12 +27,13 @@ class AircraftConvertorTest {
         var aircraftDbModel = AircraftDbModelStub.getAircraftDbModel();
         var aircraft = AircraftConvertor.toEntity(aircraftDbModel);
         assertNotNull(aircraft);
-
     }
 
     @Test
     void toModel_Aircraft_ReturnAircraftDbModel() {
-
+        var aircraft = AircraftStub.getAircraftAllParameters();
+        var aircraftDbModel = AircraftConvertor.toModel(aircraft);
+        assertNotNull(aircraftDbModel);
     }
 
 }

@@ -2,15 +2,10 @@ package org.conacry.caero.adapter.repository.convertor;
 
 import org.conacry.caero.adapter.repository.RepositoryError;
 import org.conacry.caero.adapter.repository.model.AircraftDbModel;
-import org.conacry.caero.adapter.repository.model.SeatDbModel;
 import org.conacry.caero.domain.entity.aircraft.Aircraft;
 import org.conacry.caero.domain.entity.aircraft.AircraftBuilder;
 import org.conacry.caero.domain.entity.aircraft.AircraftID;
 import org.conacry.caero.domain.entity.aircraft.Model;
-import org.conacry.caero.domain.entity.seat.Seat;
-import org.conacry.caero.domain.entity.seat.SeatBuilder;
-
-import java.util.ArrayList;
 
 public final class AircraftConvertor {
 
