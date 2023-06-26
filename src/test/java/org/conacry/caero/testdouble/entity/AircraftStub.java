@@ -24,5 +24,4 @@ public class AircraftStub {
                 model(model).
                 build();
     }
-
 }

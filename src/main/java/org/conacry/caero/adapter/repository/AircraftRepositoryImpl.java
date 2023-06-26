@@ -3,6 +3,7 @@ package org.conacry.caero.adapter.repository;
 import org.conacry.caero.boundary.repository.AircraftRepository;
 import org.conacry.caero.domain.entity.aircraft.Aircraft;
 import org.conacry.caero.domain.entity.aircraft.AircraftID;
+import org.conacry.caero.domain.entity.aircraft.Model;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,9 +19,7 @@ public class AircraftRepositoryImpl implements AircraftRepository {
     }
 
     @Override
-    public void save(Aircraft aircraft) {
-
-    }
+    public void save(Aircraft aircraft) {}
 
     @Override
     public Optional<Aircraft> findByID(AircraftID aircraftID) {
@@ -30,5 +29,10 @@ public class AircraftRepositoryImpl implements AircraftRepository {
     @Override
     public List<Aircraft> findAll() {
         return null;
+    }
+
+    @Override
+    public boolean existByModel(Model model) {
+        return false;
     }
 }

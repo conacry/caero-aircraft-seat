@@ -7,10 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import static org.conacry.caero.domain.entity.aircraft.AircraftStatus.ACTIVE;
+import static org.conacry.caero.domain.entity.aircraft.AircraftStatus.NOT_ACTIVE;
+
 public class Aircraft {
     private final AircraftID aircraftID;
     private final Model model;
     private List<Seat> seats;
+    private AircraftStatus status;
 
     private static final Map<Integer, String> lettersMap = Map.ofEntries(
             Map.entry(1, "A"),
@@ -24,10 +28,11 @@ public class Aircraft {
             Map.entry(9, "I")
     );
 
-    Aircraft(AircraftID aircraftID, Model model, List<Seat> seats) {
+    Aircraft(AircraftID aircraftID, Model model, List<Seat> seats, AircraftStatus status) {
         this.aircraftID = aircraftID;
         this.model = model;
         this.seats = seats;
+        this.status = status;
     }
 
     public void initSeats(SeatConfiguration seatConfiguration) {
@@ -93,6 +98,10 @@ public class Aircraft {
         throw AircraftError.errIllegalSeatsPerRowValue(position);
     }
 
+    public void makeNotActive() {
+        status = AircraftStatus.NOT_ACTIVE;
+    }
+
     public AircraftID getAircraftID() {
         return aircraftID;
     }
@@ -103,6 +112,10 @@ public class Aircraft {
 
     public List<Seat> getSeats() {
         return seats;
+    }
+
+    public AircraftStatus getStatus() {
+        return status;
     }
 }
 

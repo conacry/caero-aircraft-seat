@@ -13,6 +13,7 @@ public final class AircraftError {
     public static final String AIRCRAFT_SEATS_IS_ALREADY_CREATED = "01b85bf5-007";
     public static final String SEAT_CONFIGURATION_IS_REQUIRED = "01b85bf5-007";
     public static final String ILLEGAL_SEATS_PER_ROW_VALUE = "01b85bf5-009";
+    public static final String AIRCRAFT_STATUS_IS_REQUIRED = "01b85bf5-010";
 
     private AircraftError() {
     }
@@ -60,5 +61,10 @@ public final class AircraftError {
     public static CodedException errIllegalSeatsPerRowValue(int value) {
         var errMsg = String.format("Illegal value = '%s' to create Model", value);
         return new CodedException(ILLEGAL_SEATS_PER_ROW_VALUE, errMsg);
+    }
+
+    public static CodedException errStatusIsRequired() {
+        var errMsg = String.format("Aircraft status is required");
+        return new CodedException(AIRCRAFT_STATUS_IS_REQUIRED, errMsg);
     }
 }
