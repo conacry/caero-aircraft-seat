@@ -49,4 +49,9 @@ public final class AircraftID {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    @Override
+    public String toString() {
+        return this.value.toString();
+    }
 }
