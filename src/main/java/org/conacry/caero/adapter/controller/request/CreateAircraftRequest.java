@@ -2,7 +2,6 @@ package org.conacry.caero.adapter.controller.request;
 
 
 import lombok.Data;
-import org.conacry.caero.boundary.model.AircraftCreateInfo;
 
 @Data
 public class CreateAircraftRequest {
@@ -33,9 +32,6 @@ public class CreateAircraftRequest {
         private int rowCount;
         private int seatsPerRow;
     }
-
-    public AircraftCreateInfo toBoundaryModel() {
-        return null;
-    }
 }
+
 

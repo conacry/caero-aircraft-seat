@@ -12,8 +12,8 @@ public class AircraftController {
 
     @PostMapping(path = "/create-aircraft")
     public CreateAircraftResponse createAircraft(CreateAircraftRequest request) {
-        //преоброзовать reqest create info
-        //вызвать юзкейс создание аиррафт
+        //преоброзовать request create info
+        //вызвать usecase создание aircraft
         //вернуть результат (AircraftId)
 
         var response = new CreateAircraftResponse();
