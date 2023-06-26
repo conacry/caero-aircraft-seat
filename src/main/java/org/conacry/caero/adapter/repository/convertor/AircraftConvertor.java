@@ -9,10 +9,13 @@ import org.conacry.caero.domain.entity.aircraft.Model;
 
 public final class AircraftConvertor {
 
+    private AircraftConvertor() {}
+
     public static Aircraft toEntity(AircraftDbModel aircraftDbModel){
         if (aircraftDbModel == null) {
             throw RepositoryError.errAircraftDbModelIsRequired();
         }
+
         var aircraftID = aircraftDbModel.getId().toString();
         var model = aircraftDbModel.getModel();
         var seatsDbModel = aircraftDbModel.getSeat();
@@ -30,6 +33,7 @@ public final class AircraftConvertor {
         if (aircraft == null) {
             throw RepositoryError.errAircraftIsRequired();
         }
+
         var aircraftID = aircraft.getAircraftID();
         var model = aircraft.getModel().getValue();
         var seats = aircraft.getSeats();

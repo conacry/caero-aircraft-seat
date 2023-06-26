@@ -1,6 +1,5 @@
 package org.conacry.caero.adapter.repository;
 
-import org.conacry.caero.adapter.repository.model.AircraftDbModel;
 import org.conacry.caero.boundary.repository.AircraftRepository;
 import org.conacry.caero.domain.entity.aircraft.Aircraft;
 import org.conacry.caero.domain.entity.aircraft.AircraftID;

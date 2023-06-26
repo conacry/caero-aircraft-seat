@@ -13,13 +13,7 @@ class AircraftConvertorTest {
     @Test
     void toEntity_AircraftDbModelIsNull_ThrowEx() {
         var ex = assertThrows(CodedException.class, () -> AircraftConvertor.toEntity(null));
-        assertEquals(RepositoryError.AIRCRAFT_DB_MODEL_VALUE_IS_REQUIRED, ex.getCode());
-    }
-
-    @Test
-    void toModel_AircraftIsNull_ThrowEx() {
-        var ex = assertThrows(CodedException.class, () -> AircraftConvertor.toModel(null));
-        assertEquals(RepositoryError.AIRCRAFT_VALUE_IS_REQUIRED, ex.getCode());
+        assertEquals(RepositoryError.AIRCRAFT_DB_MODEL_IS_REQUIRED, ex.getCode());
     }
 
     @Test
@@ -30,8 +24,14 @@ class AircraftConvertorTest {
     }
 
     @Test
+    void toModel_AircraftIsNull_ThrowEx() {
+        var ex = assertThrows(CodedException.class, () -> AircraftConvertor.toModel(null));
+        assertEquals(RepositoryError.AIRCRAFT_IS_REQUIRED, ex.getCode());
+    }
+
+    @Test
     void toModel_Aircraft_ReturnAircraftDbModel() {
-        var aircraft = AircraftStub.getAircraftAllParameters();
+        var aircraft = AircraftStub.getFullAircraft();
         var aircraftDbModel = AircraftConvertor.toModel(aircraft);
         assertNotNull(aircraftDbModel);
     }

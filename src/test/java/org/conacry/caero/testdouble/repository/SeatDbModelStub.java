@@ -2,16 +2,10 @@ package org.conacry.caero.testdouble.repository;
 
 import org.conacry.caero.adapter.repository.model.SeatDbModel;
 import org.conacry.caero.domain.entity.aircraft.AircraftID;
-import org.conacry.caero.domain.entity.seat.FareCondition;
-import org.conacry.caero.domain.entity.seat.Seat;
-import org.conacry.caero.domain.entity.seat.SeatID;
-import org.conacry.caero.testdouble.entity.AircraftStub;
 import org.conacry.caero.testdouble.entity.SeatStub;
-import org.conacry.caero.util.StringGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class SeatDbModelStub {
 

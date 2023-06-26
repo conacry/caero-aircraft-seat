@@ -3,7 +3,6 @@ package org.conacry.caero.testdouble.entity;
 import org.conacry.caero.domain.entity.aircraft.Aircraft;
 import org.conacry.caero.domain.entity.aircraft.AircraftBuilder;
 import org.conacry.caero.domain.entity.aircraft.AircraftID;
-import org.conacry.caero.domain.entity.aircraft.Model;
 
 public class AircraftStub {
 
@@ -16,7 +15,7 @@ public class AircraftStub {
                 build();
     }
 
-    public static Aircraft getAircraftAllParameters() {
+    public static Aircraft getFullAircraft() {
         var model = ModelStub.getModel();
 
         return new AircraftBuilder().

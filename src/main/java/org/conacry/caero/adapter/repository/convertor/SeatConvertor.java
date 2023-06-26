@@ -5,10 +5,13 @@ import org.conacry.caero.adapter.repository.model.SeatDbModel;
 import org.conacry.caero.domain.entity.aircraft.AircraftID;
 import org.conacry.caero.domain.entity.seat.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public final class SeatConvertor {
+
+    private SeatConvertor() {
+    }
 
     public static Seat toEntity(SeatDbModel seatDbModel) {
         if (seatDbModel == null) {
@@ -31,14 +34,11 @@ public final class SeatConvertor {
             throw RepositoryError.errListSeatsDbModelIsRequired();
         }
 
-        var seats = new ArrayList<Seat>();
-
-        for (SeatDbModel seatDbModel: seatsDbModel) {
-            seats.add(SeatConvertor.toEntity(seatDbModel));
-        }
-
-        return seats;
+        return seatsDbModel.stream().
+                map(SeatConvertor::toEntity).
+                collect(Collectors.toList());
     }
+
     public static SeatDbModel toModel(Seat seat, AircraftID aircraftID) {
         if (seat == null) {
             throw RepositoryError.errSeatIsRequired();
@@ -69,13 +69,9 @@ public final class SeatConvertor {
             throw RepositoryError.errAircraftIdIsRequired();
         }
 
-        var listSeatDbModel = new ArrayList<SeatDbModel>();
-
-        for(Seat seat: seats) {
-            listSeatDbModel.add(toModel(seat, aircraftID));
-        }
-
-        return listSeatDbModel;
+        return seats.stream().
+                map(seat -> toModel(seat, aircraftID)).
+                collect(Collectors.toList());
     }
 
 
