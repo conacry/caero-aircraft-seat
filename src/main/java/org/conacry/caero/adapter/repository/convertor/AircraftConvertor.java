@@ -2,10 +2,10 @@ package org.conacry.caero.adapter.repository.convertor;
 
 import org.conacry.caero.adapter.repository.RepositoryError;
 import org.conacry.caero.adapter.repository.model.AircraftDbModel;
-import org.conacry.caero.domain.entity.aircraft.Aircraft;
-import org.conacry.caero.domain.entity.aircraft.AircraftBuilder;
-import org.conacry.caero.domain.entity.aircraft.AircraftID;
-import org.conacry.caero.domain.entity.aircraft.Model;
+import org.conacry.caero.domain.entity.aircraft.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public final class AircraftConvertor {
 
@@ -18,6 +18,7 @@ public final class AircraftConvertor {
 
         var aircraftID = aircraftDbModel.getId().toString();
         var model = aircraftDbModel.getModel();
+        var status = AircraftStatus.valueOf(aircraftDbModel.getAircraftStatus());
         var seatsDbModel = aircraftDbModel.getSeat();
 
         var seats = SeatConvertor.toEntities(seatsDbModel);
@@ -26,7 +27,17 @@ public final class AircraftConvertor {
                 aircraftID(AircraftID.from(aircraftID)).
                 model(Model.from(model)).
                 seats(seats).
+                status(status).
                 build();
+    }
+
+    public static List<Aircraft> toEntities(List<AircraftDbModel> aircraftDbModels) {
+        if (aircraftDbModels == null) {
+            throw RepositoryError.errListAircraftDbModelsIsRequired();
+        }
+        return aircraftDbModels.stream().
+                map(AircraftConvertor::toEntity).
+                collect(Collectors.toList());
     }
 
     public static AircraftDbModel toModel(Aircraft aircraft){
@@ -37,6 +48,7 @@ public final class AircraftConvertor {
         var aircraftID = aircraft.getAircraftID();
         var model = aircraft.getModel().getValue();
         var seats = aircraft.getSeats();
+        var status = aircraft.getStatus().name();
 
         var seatDbModels = SeatConvertor.toModels(seats, aircraftID);
 
@@ -44,7 +56,18 @@ public final class AircraftConvertor {
         aircraftDbModel.setId(aircraftID.getValue());
         aircraftDbModel.setModel(model);
         aircraftDbModel.setSeat(seatDbModels);
+        aircraftDbModel.setAircraftStatus(status);
 
         return aircraftDbModel;
     }
+
+    public static List<AircraftDbModel> toModels(List<Aircraft> aircraft) {
+        if (aircraft == null) {
+            throw RepositoryError.errListAircraftIsRequired();
+        }
+        return aircraft.stream().
+                map(AircraftConvertor::toModel).
+                collect(Collectors.toList());
+    }
+
 }

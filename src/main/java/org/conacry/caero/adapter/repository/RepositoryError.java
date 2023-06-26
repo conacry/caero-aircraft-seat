@@ -11,6 +11,9 @@ public final class RepositoryError {
     public static final String AIRCRAFT_ID_IS_REQUIRED = "e5da67d6-005";
     public static final String LIST_SEATS_IS_REQUIRED = "e5da67d6-006";
     public static final String LIST_SEATS_DB_MODEL_IS_REQUIRED = "e5da67d6-007";
+    public static final String LIST_AIRCRAFT_DB_MODEL_IS_REQUIRED = "e5da67d6-008";
+    public static final String LIST_AIRCRAFT_IS_REQUIRED = "e5da67d6-009";
+    public static final String MODEL_IS_REQUIRED = "e5da67d6-010";
 
     private RepositoryError() {}
 
@@ -47,5 +50,20 @@ public final class RepositoryError {
     public static CodedException errListSeatsDbModelIsRequired() {
         var errMsg = "Value to create ListSeatsDbModel is required";
         return new CodedException(LIST_SEATS_DB_MODEL_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errListAircraftDbModelsIsRequired() {
+        var errMsg = "Value to create ListAircraftDbModels is required";
+        return new CodedException(LIST_AIRCRAFT_DB_MODEL_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errListAircraftIsRequired() {
+        var errMsg = "Value to create ListAircraft is required";
+        return new CodedException(LIST_AIRCRAFT_IS_REQUIRED, errMsg);
+    }
+
+    public static CodedException errModelIsRequired() {
+        var errMsg = "Model is required";
+        return new CodedException(MODEL_IS_REQUIRED, errMsg);
     }
 }

@@ -18,7 +18,7 @@ class SeatConvertorTest {
     }
 
     @Test
-    void toEntity_SeatDbModel_ReturnSeat() {
+    void toEntity_AllParamsIsValid_ReturnSeat() {
         var aircraftID = AircraftStub.getFullAircraft().getAircraftID();
         var seatDbModel = SeatDbModelStub.getSeatDbModel(aircraftID);
         var seat = SeatConvertor.toEntity(seatDbModel);
@@ -32,7 +32,7 @@ class SeatConvertorTest {
     }
 
     @Test
-    void toEntities_ListSeatDbModel_ReturnListSeat() {
+    void toEntities_AllParamsIsValid_ReturnListSeat() {
         var aircraftID = AircraftStub.getFullAircraft().getAircraftID();
         var seatsDbModel = SeatDbModelStub.getSeatDbModels(5, aircraftID);
         var seats = SeatConvertor.toEntities(seatsDbModel);
@@ -54,7 +54,7 @@ class SeatConvertorTest {
     }
 
     @Test
-    void toModel_SeatAndAircraftID_ReturnSeatDbModel() {
+    void toModel_AllParamsIsValid_ReturnSeatDbModel() {
         var aircraftID = AircraftStub.getFullAircraft().getAircraftID();
         var seat = SeatStub.getSeat();
         var seatDbModel = SeatConvertor.toModel(seat, aircraftID);

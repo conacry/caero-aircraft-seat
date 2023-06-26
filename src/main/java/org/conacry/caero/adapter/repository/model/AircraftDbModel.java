@@ -24,4 +24,7 @@ public class AircraftDbModel {
     @JoinColumn(name = "aircraft_id", referencedColumnName = "id")
     private List<SeatDbModel> seat;
 
+    @Column(name = "aircraft_status", nullable = false)
+    private String aircraftStatus;
+
 }

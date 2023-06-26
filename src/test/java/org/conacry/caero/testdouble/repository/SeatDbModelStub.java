@@ -16,7 +16,6 @@ public class SeatDbModelStub {
         var number = seat.getNumber().getValue();
         var fareCondition = seat.getFareCondition().toString();
 
-
         var seatDbModel = new SeatDbModel();
 
         seatDbModel.setId(id);
@@ -29,6 +28,7 @@ public class SeatDbModelStub {
 
     public static List<SeatDbModel> getSeatDbModels(int count, AircraftID aircraftID) {
         var seatDbModels = new ArrayList<SeatDbModel>();
+
         for (int i = 0; i < count; i++){
             seatDbModels.add(getSeatDbModel(aircraftID));
         }

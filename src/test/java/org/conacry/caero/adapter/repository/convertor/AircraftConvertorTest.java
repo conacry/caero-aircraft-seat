@@ -17,9 +17,22 @@ class AircraftConvertorTest {
     }
 
     @Test
-    void toEntity_AircraftDbModel_ReturnAircraft() {
+    void toEntity_AllParamsIsValid_ReturnAircraft() {
         var aircraftDbModel = AircraftDbModelStub.getAircraftDbModel();
         var aircraft = AircraftConvertor.toEntity(aircraftDbModel);
+        assertNotNull(aircraft);
+    }
+
+    @Test
+    void toEntities_ListAircraftDbModelsIsNull_ThrowEx() {
+        var ex = assertThrows(CodedException.class, () -> AircraftConvertor.toEntities(null));
+        assertEquals(RepositoryError.LIST_AIRCRAFT_DB_MODEL_IS_REQUIRED, ex.getCode());
+    }
+
+    @Test
+    void toEntities_AllParamsIsValid_ReturnListAircraft() {
+        var aircraftDbModels = AircraftDbModelStub.getAircraftDbModels(5);
+        var aircraft = AircraftConvertor.toEntities(aircraftDbModels);
         assertNotNull(aircraft);
     }
 
@@ -30,10 +43,26 @@ class AircraftConvertorTest {
     }
 
     @Test
-    void toModel_Aircraft_ReturnAircraftDbModel() {
+    void toModel_AllParamsIsValid_ReturnAircraftDbModel() {
         var aircraft = AircraftStub.getFullAircraft();
         var aircraftDbModel = AircraftConvertor.toModel(aircraft);
         assertNotNull(aircraftDbModel);
     }
+
+    @Test
+    void toModels_ListAircraftIsNull_ThrowEx() {
+        var ex = assertThrows(CodedException.class, () -> AircraftConvertor.toModels(null));
+        assertEquals(RepositoryError.LIST_AIRCRAFT_IS_REQUIRED, ex.getCode());
+    }
+
+    @Test
+    void toModels_AllParamsIsValid_ReturnListAircraftDbModels() {
+        var aircraft = AircraftStub.getListFullAircraft(5);
+        var aircraftDbModels = AircraftConvertor.toModels(aircraft);
+        assertNotNull(aircraftDbModels);
+    }
+
+
+
 
 }
