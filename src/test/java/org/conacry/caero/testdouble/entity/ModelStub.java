@@ -1,7 +1,7 @@
 package org.conacry.caero.testdouble.entity;
 
 import org.conacry.caero.domain.entity.aircraft.Model;
-import org.conacry.caero.util.StringGenerator;
+import org.conacry.caero.util.generator.StringGenerator;
 
 public final class ModelStub {
 

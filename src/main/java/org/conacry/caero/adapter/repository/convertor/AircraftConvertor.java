@@ -18,16 +18,16 @@ public final class AircraftConvertor {
 
         var aircraftID = aircraftDbModel.getId().toString();
         var model = aircraftDbModel.getModel();
-        var status = AircraftStatus.valueOf(aircraftDbModel.getAircraftStatus());
-        var seatsDbModel = aircraftDbModel.getSeat();
+        var status = AircraftStatus.valueOf(aircraftDbModel.getStatus());
 
+        var seatsDbModel = aircraftDbModel.getSeat();
         var seats = SeatConvertor.toEntities(seatsDbModel);
 
         return new AircraftBuilder().
                 aircraftID(AircraftID.from(aircraftID)).
                 model(Model.from(model)).
-                seats(seats).
                 status(status).
+                seats(seats).
                 build();
     }
 
@@ -37,7 +37,7 @@ public final class AircraftConvertor {
         }
         return aircraftDbModels.stream().
                 map(AircraftConvertor::toEntity).
-                collect(Collectors.toList());
+                toList();
     }
 
     public static AircraftDbModel toModel(Aircraft aircraft){
@@ -48,7 +48,7 @@ public final class AircraftConvertor {
         var aircraftID = aircraft.getAircraftID();
         var model = aircraft.getModel().getValue();
         var seats = aircraft.getSeats();
-        var status = aircraft.getStatus().name();
+        var status = aircraft.getStatus();
 
         var seatDbModels = SeatConvertor.toModels(seats, aircraftID);
 
@@ -56,7 +56,7 @@ public final class AircraftConvertor {
         aircraftDbModel.setId(aircraftID.getValue());
         aircraftDbModel.setModel(model);
         aircraftDbModel.setSeat(seatDbModels);
-        aircraftDbModel.setAircraftStatus(status);
+        aircraftDbModel.setStatus(status.toString());
 
         return aircraftDbModel;
     }
@@ -67,7 +67,6 @@ public final class AircraftConvertor {
         }
         return aircraft.stream().
                 map(AircraftConvertor::toModel).
-                collect(Collectors.toList());
+                toList();
     }
-
 }

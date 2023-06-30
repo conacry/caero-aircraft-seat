@@ -1,7 +1,7 @@
 package org.conacry.caero.domain.entity.aircraft;
 
 import org.conacry.caero.domain.primitive.exception.CodedException;
-import org.conacry.caero.util.StringGenerator;
+import org.conacry.caero.util.generator.StringGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;

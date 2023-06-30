@@ -1,6 +1,7 @@
 package org.conacry.caero.testdouble.repository;
 
 import org.conacry.caero.adapter.repository.model.AircraftDbModel;
+import org.conacry.caero.domain.entity.aircraft.AircraftStatus;
 import org.conacry.caero.testdouble.entity.AircraftStub;
 
 import java.util.ArrayList;
@@ -19,8 +20,9 @@ public class AircraftDbModelStub {
         var aircraftDbModel = new AircraftDbModel();
         aircraftDbModel.setId(aircraftID.getValue());
         aircraftDbModel.setModel(model);
+        aircraftDbModel.setStatus(AircraftStatus.ACTIVE.toString());
         aircraftDbModel.setSeat(seatsDdModels);
-        aircraftDbModel.setAircraftStatus(status);
+        aircraftDbModel.setStatus(status);
 
         return aircraftDbModel;
     }

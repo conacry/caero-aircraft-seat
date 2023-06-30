@@ -12,22 +12,24 @@ public class AircraftStub {
 
     public static Aircraft getAircraftWithEmptySeats() {
         var model = ModelStub.getModel();
+        var status = AircraftStatus.ACTIVE;
 
         return new AircraftBuilder().
                 aircraftID(AircraftID.newID()).
                 model(model).
-                status(AircraftStatus.ACTIVE).
+                status(status).
                 build();
     }
 
     public static Aircraft getFullAircraft() {
         var model = ModelStub.getModel();
+        var status = AircraftStatus.ACTIVE;
 
         return new AircraftBuilder().
                 aircraftID(AircraftID.newID()).
                 seats(SeatStub.getSeatList(5)).
+                status(status).
                 model(model).
-                status(AircraftStatus.ACTIVE).
                 build();
     }
 
