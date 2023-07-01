@@ -6,12 +6,8 @@ import org.conacry.caero.domain.entity.aircraft.AircraftID;
 import org.conacry.caero.domain.entity.seat.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public final class SeatConvertor {
-
-    private SeatConvertor() {
-    }
 
     public static Seat toEntity(SeatDbModel seatDbModel) {
         if (seatDbModel == null) {
@@ -36,7 +32,7 @@ public final class SeatConvertor {
 
         return seatsDbModel.stream().
                 map(SeatConvertor::toEntity).
-                collect(Collectors.toList());
+                toList();
     }
 
     public static SeatDbModel toModel(Seat seat, AircraftID aircraftID) {
@@ -71,8 +67,8 @@ public final class SeatConvertor {
 
         return seats.stream().
                 map(seat -> toModel(seat, aircraftID)).
-                collect(Collectors.toList());
+                toList();
     }
 
-
+    private SeatConvertor() {}
 }

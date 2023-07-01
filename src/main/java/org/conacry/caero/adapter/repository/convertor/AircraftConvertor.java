@@ -5,11 +5,8 @@ import org.conacry.caero.adapter.repository.model.AircraftDbModel;
 import org.conacry.caero.domain.entity.aircraft.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public final class AircraftConvertor {
-
-    private AircraftConvertor() {}
 
     public static Aircraft toEntity(AircraftDbModel aircraftDbModel){
         if (aircraftDbModel == null) {
@@ -65,8 +62,11 @@ public final class AircraftConvertor {
         if (aircraft == null) {
             throw RepositoryError.errListAircraftIsRequired();
         }
+
         return aircraft.stream().
                 map(AircraftConvertor::toModel).
                 toList();
     }
+
+    private AircraftConvertor() {}
 }

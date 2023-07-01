@@ -61,8 +61,4 @@ class AircraftConvertorTest {
         var aircraftDbModels = AircraftConvertor.toModels(aircraft);
         assertNotNull(aircraftDbModels);
     }
-
-
-
-
 }
