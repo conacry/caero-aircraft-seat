@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface AircraftRepository {
     void save(Aircraft aircraft);
+    void update(Aircraft aircraft);
     Optional<Aircraft> findByID(AircraftID aircraftID);
     List<Aircraft> findAll();
     boolean existByModel(Model model);
