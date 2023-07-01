@@ -9,6 +9,8 @@ public final class UseCaseError {
     public static final String AIRCRAFT_IS_ALREADY_EXISTED = "73e33f9e-002";
     public static final String AIRCRAFT_IS_NOT_FOUND = "73e33f9e-003";
 
+
+
     private UseCaseError() {
     }
 

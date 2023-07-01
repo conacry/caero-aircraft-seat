@@ -1,4 +1,4 @@
-package org.conacry.caero.util;
+package org.conacry.caero.util.generator;
 
 import java.util.Random;
 

@@ -10,7 +10,7 @@ class MakeNotActiveTest {
 
     @Test
     void makeNotActive_StatusIsChanged() {
-        var aircraft = AircraftStub.getAircraftAllParameters();
+        var aircraft = AircraftStub.getFullAircraft();
         assertEquals(AircraftStatus.ACTIVE, aircraft.getStatus());
         aircraft.makeNotActive();
         assertEquals(AircraftStatus.NOT_ACTIVE, aircraft.getStatus());
