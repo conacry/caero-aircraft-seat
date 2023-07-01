@@ -5,7 +5,9 @@ import org.conacry.caero.boundary.model.AircraftCreateInfo;
 import org.conacry.caero.boundary.repository.AircraftRepository;
 import org.conacry.caero.boundary.usecase.CreateAircraftUseCase;
 import org.conacry.caero.domain.entity.aircraft.*;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CreateAircraftUseCaseImpl implements CreateAircraftUseCase {
 
     private final AircraftRepository aircraftRepo;
