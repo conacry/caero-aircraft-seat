@@ -1,9 +1,7 @@
 package org.conacry.caero.domain.entity.seat;
 
-import org.conacry.caero.domain.entity.seat.SeatError;
-import org.conacry.caero.domain.entity.seat.SeatID;
 import org.conacry.caero.domain.primitive.exception.CodedException;
-import org.conacry.caero.util.StringGenerator;
+import org.conacry.caero.util.generator.StringGenerator;
 import org.junit.jupiter.api.Test;
 
 import java.util.UUID;

@@ -1,9 +1,11 @@
 package org.conacry.caero.testdouble.entity;
 
-import org.conacry.caero.domain.entity.aircraft.*;
+import org.conacry.caero.domain.entity.aircraft.Aircraft;
+import org.conacry.caero.domain.entity.aircraft.AircraftBuilder;
+import org.conacry.caero.domain.entity.aircraft.AircraftID;
+import org.conacry.caero.domain.entity.aircraft.AircraftStatus;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class AircraftStub {
@@ -19,36 +21,25 @@ public class AircraftStub {
                 build();
     }
 
-    public static Aircraft getAircraftAllParameters() {
+    public static Aircraft getFullAircraft() {
         var model = ModelStub.getModel();
         var status = AircraftStatus.ACTIVE;
 
         return new AircraftBuilder().
                 aircraftID(AircraftID.newID()).
                 seats(SeatStub.getSeatList(5)).
-                model(model).
                 status(status).
+                model(model).
                 build();
     }
 
-    public static List<Aircraft> getAircraftList(int count) {
-        if (count == 0) {
-            return Collections.emptyList();
-        }
-
+    public static List<Aircraft> getListFullAircraft(int count) {
         var aircraftList = new ArrayList<Aircraft>();
-        for (int i = 0; i < count; i++) {
-            var model = Model.from("Model");
-            var aircraftID = AircraftID.newID();
-            var aircraft = new AircraftBuilder().
-                    aircraftID(aircraftID).
-                    model(model).
-                    status(AircraftStatus.ACTIVE).
-                    build();
-            aircraftList.add(aircraft);
+
+        for (int i = 0; i< count; i++) {
+            aircraftList.add(getFullAircraft());
         }
 
         return aircraftList;
     }
-
 }

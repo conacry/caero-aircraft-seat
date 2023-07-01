@@ -48,7 +48,7 @@ class ReadAircraftDataUseCaseImplTest {
 
     @Test
     void execute_AircraftExists_ReturnAircraft() {
-        var aircraft = AircraftStub.getAircraftAllParameters();
+        var aircraft = AircraftStub.getFullAircraft();
         var aircraftID = AircraftID.newID().toString();
         when(aircraftRepository.findByID(any(AircraftID.class))).thenReturn(Optional.of(aircraft));
 
@@ -65,7 +65,7 @@ class ReadAircraftDataUseCaseImplTest {
 
     @Test
     void execute_AircraftListExists_ReturnAircraftList() {
-        var aircraftList = AircraftStub.getAircraftList(5);
+        var aircraftList = AircraftStub.getListFullAircraft(5);
         when(aircraftRepository.findAll()).thenReturn(aircraftList);
         var actualAircraftList = readAircraftDataUseCase.findAll();
         assertEquals(actualAircraftList, aircraftList);
@@ -73,7 +73,7 @@ class ReadAircraftDataUseCaseImplTest {
 
     @Test
     void execute_AircraftListIsEmpty_ReturnNull() {
-        var aircraftList = AircraftStub.getAircraftList(0);
+        var aircraftList = AircraftStub.getListFullAircraft(0);
         when(aircraftRepository.findAll()).thenReturn(aircraftList);
         var actualAircraftList = readAircraftDataUseCase.findAll();
         assertNotNull(actualAircraftList);

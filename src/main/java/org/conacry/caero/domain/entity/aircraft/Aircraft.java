@@ -4,7 +4,6 @@ import org.conacry.caero.boundary.model.SeatConfiguration;
 import org.conacry.caero.domain.entity.seat.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

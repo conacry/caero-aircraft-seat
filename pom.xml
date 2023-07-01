@@ -28,6 +28,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <sonar.organization>conacry</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <testconatiner.pg.version>1.18.3</testconatiner.pg.version>
 
         <junit-version>5.9.3</junit-version>
         <lombok.version>1.18.28</lombok.version>
@@ -43,6 +44,21 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
+        <!-- Persistence -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+        </dependency>
+
+        <!-- Sugar -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -63,22 +79,10 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>RELEASE</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${testconatiner.pg.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -1,6 +1,5 @@
 package org.conacry.caero.domain.entity.aircraft;
 
-import org.conacry.caero.boundary.model.SeatConfiguration;
 import org.conacry.caero.domain.entity.seat.FareCondition;
 import org.conacry.caero.domain.entity.seat.Seat;
 import org.conacry.caero.domain.primitive.exception.CodedException;
@@ -75,7 +74,7 @@ class AircraftInitSeatsTest {
     @Test
     void initSeats_SeatsListIsCreated_ThrowEx() {
         var seatConfiguration = SeatConfigurationStub.getSeatConfiguration();
-        var aircraft = AircraftStub.getAircraftAllParameters();
+        var aircraft = AircraftStub.getFullAircraft();
         var ex = assertThrows(CodedException.class, () -> aircraft.initSeats(seatConfiguration));
         assertEquals(AircraftError.AIRCRAFT_SEATS_IS_ALREADY_CREATED, ex.getCode());
         assertFalse(ex.getMessage().isEmpty());
