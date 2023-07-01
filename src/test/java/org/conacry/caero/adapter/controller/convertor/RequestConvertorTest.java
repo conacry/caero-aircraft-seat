@@ -22,10 +22,32 @@ class RequestConvertorTest {
     }
 
     @Test
-    void createRequestToModel_NoExceptionThrow_ReturnAircraftCreateInfo() {
+    void createRequestToModel_OnlyEconomySeats_ReturnAircraftCreateInfo() {
         var request = new CreateAircraftRequest();
         request.setModel("model");
         var seatConfig = new CreateAircraftRequest.SeatConfiguration();
+
+        var economyClassSeatConfig = new CreateAircraftRequest.EconomySeatInfo();
+        economyClassSeatConfig.setRowCount(1);
+        economyClassSeatConfig.setSeatsPerRow(2);
+        seatConfig.setEconomySeatInfo(economyClassSeatConfig);
+
+        request.setSeatConfiguration(seatConfig);
+
+        var info = RequestConvertor.createRequestToModel(request);
+        assertNotNull(info);
+        assertNotNull(info.getSeatConfiguration());
+        assertTrue(info.getSeatConfiguration().getEconomySeatInfo().isPresent());
+        assertTrue(info.getSeatConfiguration().getBusinessSeatInfo().isEmpty());
+        assertTrue(info.getSeatConfiguration().getFirstClassSeatInfo().isEmpty());
+    }
+
+    @Test
+    void createRequestToModel_AllSeatConfig_ReturnAircraftCreateInfo() {
+        var request = new CreateAircraftRequest();
+        request.setModel("model");
+        var seatConfig = new CreateAircraftRequest.SeatConfiguration();
+
         var firstClassSeatConfig = new CreateAircraftRequest.FirstClassSeatInfo();
         firstClassSeatConfig.setRowCount(1);
         firstClassSeatConfig.setSeatsPerRow(2);
@@ -45,5 +67,9 @@ class RequestConvertorTest {
 
         var info = RequestConvertor.createRequestToModel(request);
         assertNotNull(info);
+        assertNotNull(info.getSeatConfiguration());
+        assertTrue(info.getSeatConfiguration().getEconomySeatInfo().isPresent());
+        assertTrue(info.getSeatConfiguration().getBusinessSeatInfo().isPresent());
+        assertTrue(info.getSeatConfiguration().getFirstClassSeatInfo().isPresent());
     }
 }
