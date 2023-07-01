@@ -4,9 +4,11 @@ import org.conacry.caero.boundary.repository.AircraftRepository;
 import org.conacry.caero.boundary.usecase.ReadAircraftDataUseCase;
 import org.conacry.caero.domain.entity.aircraft.Aircraft;
 import org.conacry.caero.domain.entity.aircraft.AircraftID;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ReadAircraftDataUseCaseImpl implements ReadAircraftDataUseCase {
 
     private final AircraftRepository aircraftRepository;
