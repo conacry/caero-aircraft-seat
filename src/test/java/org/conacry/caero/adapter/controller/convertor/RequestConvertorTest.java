@@ -2,9 +2,6 @@ package org.conacry.caero.adapter.controller.convertor;
 
 import org.conacry.caero.adapter.controller.ControllerError;
 import org.conacry.caero.adapter.controller.request.CreateAircraftRequest;
-import org.conacry.caero.boundary.model.SeatConfiguration;
-import org.conacry.caero.domain.entity.aircraft.Aircraft;
-import org.conacry.caero.domain.entity.aircraft.Model;
 import org.conacry.caero.domain.primitive.exception.CodedException;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +40,7 @@ class RequestConvertorTest {
         businessClassSeatConfig.setRowCount(1);
         businessClassSeatConfig.setSeatsPerRow(2);
         seatConfig.setBusinessSeatInfo(businessClassSeatConfig);
-        
+
         request.setSeatConfiguration(seatConfig);
 
         var info = RequestConvertor.createRequestToModel(request);
