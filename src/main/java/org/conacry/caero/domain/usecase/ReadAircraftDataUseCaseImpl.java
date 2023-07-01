@@ -17,9 +17,6 @@ public class ReadAircraftDataUseCaseImpl implements ReadAircraftDataUseCase {
 
     @Override
     public Aircraft findByID(String aircraftIDStr) {
-        //из стр aircraftID, from rep aircraft by ID, if optional is empty you should throw exception(AircraftNotFound exception)
-        // if optional isn't empty you should return aircraft
-
         var aircraftID = AircraftID.from(aircraftIDStr);
         var aircraftOpt = aircraftRepository.findByID(aircraftID);
 
