@@ -74,7 +74,7 @@ class AircraftInitSeatsTest {
     @Test
     void initSeats_SeatsListIsCreated_ThrowEx() {
         var seatConfiguration = SeatConfigurationStub.getSeatConfiguration();
-        var aircraft = AircraftStub.getFullAircraft();
+        var aircraft = AircraftStub.getFullActiveAircraft();
         var ex = assertThrows(CodedException.class, () -> aircraft.initSeats(seatConfiguration));
         assertEquals(AircraftError.AIRCRAFT_SEATS_IS_ALREADY_CREATED, ex.getCode());
         assertFalse(ex.getMessage().isEmpty());

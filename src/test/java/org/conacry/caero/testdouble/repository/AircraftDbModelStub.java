@@ -10,7 +10,7 @@ import java.util.List;
 public class AircraftDbModelStub {
 
     public static AircraftDbModel getAircraftDbModel() {
-        var aircraft = AircraftStub.getFullAircraft();
+        var aircraft = AircraftStub.getFullActiveAircraft();
 
         var aircraftID = aircraft.getAircraftID();
         var model = aircraft.getModel().getValue();

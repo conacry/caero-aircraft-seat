@@ -1,8 +1,10 @@
 package org.conacry.caero.adapter.repository;
 
+import org.conacry.caero.adapter.repository.jpa.AircraftDao;
 import org.conacry.caero.adapter.repository.model.AircraftDbModel;
 import org.conacry.caero.boundary.repository.AircraftRepository;
 import org.conacry.caero.domain.entity.aircraft.AircraftID;
+import org.conacry.caero.domain.entity.aircraft.AircraftStatus;
 import org.conacry.caero.domain.primitive.exception.CodedException;
 import org.conacry.caero.testdouble.entity.AircraftStub;
 import org.conacry.caero.testdouble.entity.ModelStub;
@@ -21,11 +23,12 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class AircraftRepositoryImplTest {
+class AircraftRepositoryImplTest {
 
     @Mock
     private AircraftDao aircraftDao;
@@ -48,7 +51,7 @@ public class AircraftRepositoryImplTest {
 
     @Test
     void save_AllParamsIsValid_DaoIsNotNull() {
-        var aircraft = AircraftStub.getFullAircraft();
+        var aircraft = AircraftStub.getFullActiveAircraft();
 
         aircraftRepository.save(aircraft);
         verify(aircraftDao).save(dbModelCaptor.capture());
@@ -64,22 +67,23 @@ public class AircraftRepositoryImplTest {
     @Test
     void findByID_AllParamsIsValid_ReturnAircraft() {
         var dbModel = AircraftDbModelStub.getAircraftDbModel();
-        when(aircraftDao.findById(any(UUID.class))).thenReturn(Optional.of(dbModel));
+        when(aircraftDao.findByIdAndStatus(any(UUID.class), anyString())).thenReturn(dbModel);
 
-        var aircraft = aircraftRepository.findByID(AircraftID.newID());
-        assertNotNull(aircraft);
+        var aircraftOpt = aircraftRepository.findByID(AircraftID.newID());
+        assertNotNull(aircraftOpt);
+        assertTrue(aircraftOpt.isPresent());
 
-        assertEquals(dbModel.getId(), aircraft.get().getAircraftID().getValue());
+        assertEquals(dbModel.getId(), aircraftOpt.get().getAircraftID().getValue());
     }
 
     @Test
     void findAll_NotParams_ReturnListAircraft() {
         var aircraftDbModels = AircraftDbModelStub.getAircraftDbModels(5);
-        when(aircraftDao.findAll()).thenReturn(aircraftDbModels);
+        when(aircraftDao.findAllByStatus(anyString())).thenReturn(aircraftDbModels);
 
         var listAircraft = aircraftRepository.findAll();
         assertNotNull(listAircraft);
-
+        assertEquals(aircraftDbModels.size(), listAircraft.size());
         assertEquals(aircraftDbModels.get(4).getId(), listAircraft.get(4).getAircraftID().getValue());
     }
 

@@ -16,7 +16,7 @@ public class SeatDbModel {
     @Column(name = "id")
     private UUID id;
 
-    @Column(name = "seat_number")
+    @Column(name = "number")
     private String number;
 
     @Column(name = "fare_condition")

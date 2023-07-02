@@ -48,7 +48,7 @@ class ReadAircraftDataUseCaseImplTest {
 
     @Test
     void execute_AircraftExists_ReturnAircraft() {
-        var aircraft = AircraftStub.getFullAircraft();
+        var aircraft = AircraftStub.getFullActiveAircraft();
         var aircraftID = AircraftID.newID().toString();
         when(aircraftRepository.findByID(any(AircraftID.class))).thenReturn(Optional.of(aircraft));
 

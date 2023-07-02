@@ -44,7 +44,7 @@ class AircraftConvertorTest {
 
     @Test
     void toModel_AllParamsIsValid_ReturnAircraftDbModel() {
-        var aircraft = AircraftStub.getFullAircraft();
+        var aircraft = AircraftStub.getFullActiveAircraft();
         var aircraftDbModel = AircraftConvertor.toModel(aircraft);
         assertNotNull(aircraftDbModel);
     }
