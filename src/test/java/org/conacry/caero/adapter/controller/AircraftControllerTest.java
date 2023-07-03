@@ -1,10 +1,13 @@
 package org.conacry.caero.adapter.controller;
 
 import org.conacry.caero.adapter.controller.convertor.RequestConvertor;
+import org.conacry.caero.adapter.controller.request.CreateAircraftRequest;
+import org.conacry.caero.adapter.controller.response.CreateAircraftResponse;
 import org.conacry.caero.boundary.model.AircraftCreateInfo;
 import org.conacry.caero.boundary.usecase.CreateAircraftUseCase;
 import org.conacry.caero.domain.primitive.exception.CodedException;
 import org.conacry.caero.testdouble.controller.RequestStub;
+import org.conacry.caero.testdouble.entity.AircraftStub;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -42,4 +45,13 @@ class AircraftControllerTest {
         assertThrows(RuntimeException.class, () -> aircraftController.createAircraft(request));
     }
 
+    @Test
+    void createAircraft_NoExceptionsOccurred_ReturnResponse() {
+        var aircraft = AircraftStub.getAircraftAllParameters();
+        when(createAircraftUseCase.execute(any(AircraftCreateInfo.class))).thenReturn(aircraft);
+
+        var request = RequestStub.getFullCreateAircraftRequest();
+        var response = aircraftController.createAircraft(request);
+        assertEquals(aircraft.getAircraftID().toString(), response.getAircraftID());
+    }
 }

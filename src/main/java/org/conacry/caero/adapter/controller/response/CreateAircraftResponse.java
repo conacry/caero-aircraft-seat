@@ -5,5 +5,4 @@ import lombok.Data;
 @Data
 public class CreateAircraftResponse {
     private String aircraftID;
-
 }

@@ -19,7 +19,6 @@ public class AircraftController {
         this.createAircraftUseCase = createAircraftUseCase;
     }
 
-
     @PostMapping(path = "/create-aircraft")
     public CreateAircraftResponse createAircraft(@RequestBody CreateAircraftRequest request) {
         var info = RequestConvertor.createRequestToModel(request);
@@ -30,8 +29,5 @@ public class AircraftController {
         response.setAircraftID(aircraft.getAircraftID().toString());
         return response;
     }
-// request null
-// mock usecase
-
-//response возращает 2 одинаковых id
 }
+//response возращает 2 одинаковых id
