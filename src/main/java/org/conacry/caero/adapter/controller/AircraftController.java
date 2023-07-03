@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.conacry.caero.boundary.usecase.ReadAircraftDataUseCase;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/api/v1")
 public class AircraftController {
@@ -53,5 +55,11 @@ public class AircraftController {
     public AircraftResponse getByID(@RequestBody GetByIDRequest request) {
         var aircraft = readAircraftDataUseCase.findByID(request.getAircraftID());
         return ResponseConvertor.aircraftToResponse(aircraft);
+    }
+
+    @GetMapping(path = "/get-all")
+    public List<AircraftResponse> getAll() {
+        var aircrafts = readAircraftDataUseCase.findAll();
+        return ResponseConvertor.aircraftsToResponses(aircrafts);
     }
 }

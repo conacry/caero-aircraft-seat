@@ -1,25 +1,23 @@
 package org.conacry.caero.adapter.controller;
 
+import org.conacry.caero.adapter.controller.request.DeleteAircraftRequest;
+import org.conacry.caero.adapter.controller.request.GetByIDRequest;
 import org.conacry.caero.boundary.model.AircraftCreateInfo;
 import org.conacry.caero.boundary.usecase.CreateAircraftUseCase;
+import org.conacry.caero.boundary.usecase.DeleteAircraftUseCase;
 import org.conacry.caero.boundary.usecase.ReadAircraftDataUseCase;
+import org.conacry.caero.domain.entity.aircraft.AircraftID;
 import org.conacry.caero.domain.primitive.exception.CodedException;
 import org.conacry.caero.testdouble.controller.RequestStub;
 import org.conacry.caero.testdouble.entity.AircraftStub;
-import org.conacry.caero.adapter.controller.request.DeleteAircraftRequest;
-import org.conacry.caero.boundary.usecase.DeleteAircraftUseCase;
-import org.conacry.caero.domain.entity.aircraft.AircraftID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import org.springframework.http.HttpStatus;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
@@ -86,5 +84,17 @@ class AircraftControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNull(response.getBody());
+    }
+
+    @Test
+    void getByID_NoExOccurred_ReturnAircraftResponse() {
+        var getByIDRequest = new GetByIDRequest();
+
+
+    }
+
+    @Test
+    void getAll() {
+
     }
 }
