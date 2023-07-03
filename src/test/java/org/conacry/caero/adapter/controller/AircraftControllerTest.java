@@ -1,5 +1,13 @@
 package org.conacry.caero.adapter.controller;
 
+import org.conacry.caero.adapter.controller.convertor.RequestConvertor;
+import org.conacry.caero.adapter.controller.request.CreateAircraftRequest;
+import org.conacry.caero.adapter.controller.response.CreateAircraftResponse;
+import org.conacry.caero.boundary.model.AircraftCreateInfo;
+import org.conacry.caero.boundary.usecase.CreateAircraftUseCase;
+import org.conacry.caero.domain.primitive.exception.CodedException;
+import org.conacry.caero.testdouble.controller.RequestStub;
+import org.conacry.caero.testdouble.entity.AircraftStub;
 import org.conacry.caero.adapter.controller.request.DeleteAircraftRequest;
 import org.conacry.caero.boundary.model.AircraftCreateInfo;
 import org.conacry.caero.boundary.model.SeatConfiguration;
@@ -16,6 +24,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -28,17 +40,44 @@ import static org.mockito.Mockito.*;
 class AircraftControllerTest {
 
     @Mock
+    private CreateAircraftUseCase createAircraftUseCase;
+
+    @Mock
     private DeleteAircraftUseCase deleteAircraftUseCase;
 
     private AircraftController aircraftController;
 
     @BeforeEach
     void setUp() {
-        this.aircraftController = new AircraftController(deleteAircraftUseCase);
+        this.aircraftController = new AircraftController(createAircraftUseCase, deleteAircraftUseCase);
     }
 
     @Test
-    void execute_DeleteAircraftThrewEx_ThrowEx() {
+    void createAircraft_RequestIsNull_ThrowEx() {
+        var ex = assertThrows(CodedException.class, () -> aircraftController.createAircraft(null));
+        assertEquals(ControllerError.REQUEST_IS_REQUIRED, ex.getCode());
+    }
+
+    @Test
+    void createAircraft_UsecaseThrewEx_ThrowEx() {
+        var request = RequestStub.getFullCreateAircraftRequest();
+
+        when(createAircraftUseCase.execute(any(AircraftCreateInfo.class))).thenThrow(RuntimeException.class);
+        assertThrows(RuntimeException.class, () -> aircraftController.createAircraft(request));
+    }
+
+    @Test
+    void createAircraft_NoExceptionsOccurred_ReturnResponse() {
+        var aircraft = AircraftStub.getFullActiveAircraft();
+        when(createAircraftUseCase.execute(any(AircraftCreateInfo.class))).thenReturn(aircraft);
+
+        var request = RequestStub.getFullCreateAircraftRequest();
+        var response = aircraftController.createAircraft(request);
+        assertEquals(aircraft.getAircraftID().toString(), response.getAircraftID());
+    }
+
+    @Test
+    void deleteAircraft_DeleteAircraftThrewEx_ThrowEx() {
         doThrow(RuntimeException.class).when(deleteAircraftUseCase).deleteAircraftByID(anyString());
 
         var request = new DeleteAircraftRequest();
@@ -47,7 +86,7 @@ class AircraftControllerTest {
     }
 
     @Test
-    void execute_DeleteAircraftIsAlreadyExisted_ThrowEx() {
+    void deleteAircraft_DeleteAircraftIsAlreadyExisted_ThrowEx() {
         doNothing().when(deleteAircraftUseCase).deleteAircraftByID(anyString());
 
         var request = new DeleteAircraftRequest();
@@ -56,7 +95,5 @@ class AircraftControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNull(response.getBody());
-
     }
 }
-
