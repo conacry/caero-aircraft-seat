@@ -6,6 +6,6 @@ import org.conacry.caero.domain.entity.aircraft.AircraftID;
 import java.util.List;
 
 public interface ReadAircraftDataUseCase {
-    Aircraft findByID(AircraftID aircraftID);
+    Aircraft findByID(String aircraftIDStr);
     List<Aircraft> findAll();
 }

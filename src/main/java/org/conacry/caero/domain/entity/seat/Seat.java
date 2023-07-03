@@ -1,5 +1,10 @@
 package org.conacry.caero.domain.entity.seat;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+
+@EqualsAndHashCode
+@ToString
 public class Seat {
 
     private final SeatID seatID;
@@ -22,14 +27,5 @@ public class Seat {
 
     public SeatID getSeatID() {
         return seatID;
-    }
-
-    @Override
-    public String toString() {
-        return "Seat{" +
-                "seatID=" + seatID +
-                ", number=" + number +
-                ", fareCondition=" + fareCondition +
-                '}';
     }
 }

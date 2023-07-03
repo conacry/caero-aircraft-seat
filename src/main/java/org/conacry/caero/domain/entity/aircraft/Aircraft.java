@@ -1,16 +1,16 @@
 package org.conacry.caero.domain.entity.aircraft;
 
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.conacry.caero.boundary.model.SeatConfiguration;
 import org.conacry.caero.domain.entity.seat.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.conacry.caero.domain.entity.aircraft.AircraftStatus.ACTIVE;
-import static org.conacry.caero.domain.entity.aircraft.AircraftStatus.NOT_ACTIVE;
-
+@EqualsAndHashCode
+@ToString
 public class Aircraft {
     private final AircraftID aircraftID;
     private final Model model;
