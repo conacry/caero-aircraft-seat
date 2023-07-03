@@ -19,7 +19,7 @@ class SeatConvertorTest {
 
     @Test
     void toEntity_AllParamsIsValid_ReturnSeat() {
-        var aircraftID = AircraftStub.getFullAircraft().getAircraftID();
+        var aircraftID = AircraftStub.getFullActiveAircraft().getAircraftID();
         var seatDbModel = SeatDbModelStub.getSeatDbModel(aircraftID);
         var seat = SeatConvertor.toEntity(seatDbModel);
         assertNotNull(seat);
@@ -33,7 +33,7 @@ class SeatConvertorTest {
 
     @Test
     void toEntities_AllParamsIsValid_ReturnListSeat() {
-        var aircraftID = AircraftStub.getFullAircraft().getAircraftID();
+        var aircraftID = AircraftStub.getFullActiveAircraft().getAircraftID();
         var seatsDbModel = SeatDbModelStub.getSeatDbModels(5, aircraftID);
         var seats = SeatConvertor.toEntities(seatsDbModel);
         assertNotNull(seats);
@@ -41,7 +41,7 @@ class SeatConvertorTest {
 
     @Test
     void toModel_SeatIsNull_ThrowEx() {
-        var aircraftID = AircraftStub.getFullAircraft().getAircraftID();
+        var aircraftID = AircraftStub.getFullActiveAircraft().getAircraftID();
         var ex = assertThrows(CodedException.class, () -> SeatConvertor.toModel(null, aircraftID));
         assertEquals(RepositoryError.SEAT_IS_REQUIRED, ex.getCode());
     }
@@ -55,7 +55,7 @@ class SeatConvertorTest {
 
     @Test
     void toModel_AllParamsIsValid_ReturnSeatDbModel() {
-        var aircraftID = AircraftStub.getFullAircraft().getAircraftID();
+        var aircraftID = AircraftStub.getFullActiveAircraft().getAircraftID();
         var seat = SeatStub.getSeat();
         var seatDbModel = SeatConvertor.toModel(seat, aircraftID);
         assertNotNull(seatDbModel);
@@ -63,7 +63,7 @@ class SeatConvertorTest {
 
     @Test
     void toModels_ListSeatIsNull_ThrowEx() {
-        var aircraftID = AircraftStub.getFullAircraft().getAircraftID();
+        var aircraftID = AircraftStub.getFullActiveAircraft().getAircraftID();
         var ex = assertThrows(CodedException.class, () -> SeatConvertor.toModels(null, aircraftID));
         assertEquals(RepositoryError.LIST_SEATS_IS_REQUIRED, ex.getCode());
     }
@@ -77,7 +77,7 @@ class SeatConvertorTest {
 
     @Test
     void toModels_AllParamsIsValid_ReturnListSeatsDbModel() {
-        var aircraftID = AircraftStub.getFullAircraft().getAircraftID();
+        var aircraftID = AircraftStub.getFullActiveAircraft().getAircraftID();
         var seats = SeatStub.getSeatList(5);
         var seatsDbModel = SeatConvertor.toModels(seats, aircraftID);
         assertNotNull(seatsDbModel);

@@ -23,7 +23,13 @@ public class AircraftDbModel {
     @Column(name = "status", nullable = false)
     private String status;
 
-    @OneToMany
-    @JoinColumn(name = "aircraft_id", referencedColumnName = "id")
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @JoinColumn(
+            name = "aircraft_id",
+            referencedColumnName = "id",
+            nullable = false,
+            insertable = false,
+            updatable = false
+    )
     private List<SeatDbModel> seat;
 }
