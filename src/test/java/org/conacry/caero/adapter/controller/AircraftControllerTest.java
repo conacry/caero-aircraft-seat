@@ -1,35 +1,21 @@
 package org.conacry.caero.adapter.controller;
 
-import org.conacry.caero.adapter.controller.convertor.RequestConvertor;
-import org.conacry.caero.adapter.controller.request.CreateAircraftRequest;
-import org.conacry.caero.adapter.controller.response.CreateAircraftResponse;
+import org.conacry.caero.adapter.controller.request.DeleteAircraftRequest;
+import org.conacry.caero.adapter.controller.request.GetByIDRequest;
 import org.conacry.caero.boundary.model.AircraftCreateInfo;
 import org.conacry.caero.boundary.usecase.CreateAircraftUseCase;
+import org.conacry.caero.boundary.usecase.DeleteAircraftUseCase;
+import org.conacry.caero.boundary.usecase.ReadAircraftDataUseCase;
+import org.conacry.caero.domain.entity.aircraft.AircraftID;
 import org.conacry.caero.domain.primitive.exception.CodedException;
 import org.conacry.caero.testdouble.controller.RequestStub;
 import org.conacry.caero.testdouble.entity.AircraftStub;
-import org.conacry.caero.adapter.controller.request.DeleteAircraftRequest;
-import org.conacry.caero.boundary.model.AircraftCreateInfo;
-import org.conacry.caero.boundary.model.SeatConfiguration;
-import org.conacry.caero.boundary.repository.AircraftRepository;
-import org.conacry.caero.boundary.usecase.DeleteAircraftUseCase;
-import org.conacry.caero.domain.entity.aircraft.Aircraft;
-import org.conacry.caero.domain.entity.aircraft.AircraftID;
-import org.conacry.caero.domain.entity.aircraft.Model;
-import org.conacry.caero.domain.primitive.exception.CodedException;
-import org.conacry.caero.domain.usecase.UseCaseError;
-import org.conacry.caero.testdouble.entity.SeatConfigurationStub;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -45,11 +31,14 @@ class AircraftControllerTest {
     @Mock
     private DeleteAircraftUseCase deleteAircraftUseCase;
 
+    @Mock
+    private ReadAircraftDataUseCase readAircraftDataUseCase;
+
     private AircraftController aircraftController;
 
     @BeforeEach
     void setUp() {
-        this.aircraftController = new AircraftController(createAircraftUseCase, deleteAircraftUseCase);
+        this.aircraftController = new AircraftController(createAircraftUseCase, deleteAircraftUseCase, readAircraftDataUseCase);
     }
 
     @Test
@@ -95,5 +84,17 @@ class AircraftControllerTest {
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNull(response.getBody());
+    }
+
+    @Test
+    void getByID_NoExOccurred_ReturnAircraftResponse() {
+        var getByIDRequest = new GetByIDRequest();
+
+
+    }
+
+    @Test
+    void getAll() {
+
     }
 }
