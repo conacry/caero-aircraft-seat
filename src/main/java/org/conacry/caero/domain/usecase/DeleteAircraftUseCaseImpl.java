@@ -18,23 +18,17 @@ public class DeleteAircraftUseCaseImpl implements DeleteAircraftUseCase {
 
     @Override
     public void deleteAircraftByID(String aircraftIDStr) {
-        // преобразовать стринг в аиркрафт айди
         var aircraftID = AircraftID.from(aircraftIDStr);
 
-
-        // получить аиркрафт из репозитория по аикрафт айди
         var aircraftOpt = aircraftRepository.findByID(aircraftID);
 
-        // если опшинал пустое, то выбросить исключение аиркрафт нот фаунд
         if (aircraftOpt.isEmpty()) {
             throw UseCaseError.errAircraftNotFound(aircraftID);
         }
 
-        // вызвать у аиркрафт метод мэйкНотАктив
         var aircraft = aircraftOpt.get();
         aircraft.makeNotActive();
 
-        // обновить аиркрафт в репозитории
         aircraftRepository.update(aircraft);
     }
 }
