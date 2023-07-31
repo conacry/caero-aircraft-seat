@@ -64,7 +64,7 @@ public final class AircraftError {
     }
 
     public static CodedException errStatusIsRequired() {
-        var errMsg = String.format("Aircraft status is required");
+        var errMsg = "Aircraft status is required";
         return new CodedException(AIRCRAFT_STATUS_IS_REQUIRED, errMsg);
     }
 }

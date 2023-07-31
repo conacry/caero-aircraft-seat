@@ -19,21 +19,21 @@ public final class RequestConvertor {
         var seatConfig = new SeatConfiguration();
 
         if (request.getSeatConfiguration().getEconomySeatInfo() != null) {
-            var economySeatConfig = new SeatConfiguration.EconomySeatInfo();
+            var economySeatConfig = new SeatConfiguration.SeatInfo();
             economySeatConfig.setRowCount(request.getSeatConfiguration().getEconomySeatInfo().getRowCount());
             economySeatConfig.setSeatsPerRow(request.getSeatConfiguration().getEconomySeatInfo().getSeatsPerRow());
             seatConfig.setEconomySeatInfo(economySeatConfig);
         }
 
         if (request.getSeatConfiguration().getFirstClassSeatInfo() != null) {
-            var firstSeatConfig = new SeatConfiguration.FirstClassSeatInfo();
+            var firstSeatConfig = new SeatConfiguration.SeatInfo();
             firstSeatConfig.setRowCount(request.getSeatConfiguration().getFirstClassSeatInfo().getRowCount());
             firstSeatConfig.setSeatsPerRow(request.getSeatConfiguration().getFirstClassSeatInfo().getSeatsPerRow());
             seatConfig.setFirstClassSeatInfo(firstSeatConfig);
         }
 
         if (request.getSeatConfiguration().getBusinessSeatInfo() != null) {
-            var businessSeatConfig = new SeatConfiguration.BusinessSeatInfo();
+            var businessSeatConfig = new SeatConfiguration.SeatInfo();
             businessSeatConfig.setRowCount(request.getSeatConfiguration().getBusinessSeatInfo().getRowCount());
             businessSeatConfig.setSeatsPerRow(request.getSeatConfiguration().getBusinessSeatInfo().getSeatsPerRow());
             seatConfig.setBusinessSeatInfo(businessSeatConfig);
