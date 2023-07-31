@@ -1,6 +1,7 @@
 package org.conacry.caero.domain.entity.aircraft;
 
 import org.conacry.caero.domain.entity.seat.Seat;
+import org.conacry.caero.domain.entity.seat.Seats;
 
 import java.util.Collections;
 import java.util.List;
@@ -9,7 +10,7 @@ public class AircraftBuilder {
 
     private AircraftID aircraftID;
     private Model model;
-    private List<Seat> seats;
+    private Seats seats;
     private AircraftStatus status;
 
     public AircraftBuilder aircraftID(AircraftID aircraftID){
@@ -23,7 +24,7 @@ public class AircraftBuilder {
     }
 
     public AircraftBuilder seats(List<Seat> seats){
-        this.seats = seats;
+        this.seats = Seats.of(seats);
         return this;
     }
 
@@ -46,7 +47,7 @@ public class AircraftBuilder {
 
     private void fillDefaultValues() {
         if(this.seats == null){
-            this.seats = Collections.emptyList();
+            this.seats = Seats.newSeats();
         }
     }
 

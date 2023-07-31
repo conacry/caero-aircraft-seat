@@ -7,36 +7,24 @@ import java.util.Optional;
 @Data
 public class SeatConfiguration {
 
-    private FirstClassSeatInfo firstClassSeatInfo;
-    private BusinessSeatInfo businessSeatInfo;
-    private EconomySeatInfo economySeatInfo;
+    private SeatInfo firstClassSeatInfo;
+    private SeatInfo businessSeatInfo;
+    private SeatInfo economySeatInfo;
 
-    public Optional<FirstClassSeatInfo> getFirstClassSeatInfo() {
+    public Optional<SeatInfo> getFirstClassSeatInfo() {
         return Optional.ofNullable(firstClassSeatInfo);
     }
 
-    public Optional<BusinessSeatInfo> getBusinessSeatInfo() {
+    public Optional<SeatInfo> getBusinessSeatInfo() {
         return Optional.ofNullable(businessSeatInfo);
     }
 
-    public Optional<EconomySeatInfo> getEconomySeatInfo() {
+    public Optional<SeatInfo> getEconomySeatInfo() {
         return Optional.ofNullable(economySeatInfo);
     }
 
     @Data
-    public static class FirstClassSeatInfo {
-        private int rowCount;
-        private int seatsPerRow;
-    }
-
-    @Data
-    public static class BusinessSeatInfo {
-        private int rowCount;
-        private int seatsPerRow;
-    }
-
-    @Data
-    public static class EconomySeatInfo {
+    public static class SeatInfo {
         private int rowCount;
         private int seatsPerRow;
     }

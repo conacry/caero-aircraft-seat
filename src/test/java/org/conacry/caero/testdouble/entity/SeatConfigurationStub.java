@@ -8,15 +8,15 @@ import org.conacry.caero.domain.entity.aircraft.AircraftID;
 public final class SeatConfigurationStub {
 
     public static SeatConfiguration getSeatConfiguration() {
-        var firstClassSeatsInfo = new SeatConfiguration.FirstClassSeatInfo();
+        var firstClassSeatsInfo = new SeatConfiguration.SeatInfo();
         firstClassSeatsInfo.setRowCount(5);
         firstClassSeatsInfo.setSeatsPerRow(6);
 
-        var businessSeatsInfo = new SeatConfiguration.BusinessSeatInfo();
+        var businessSeatsInfo = new SeatConfiguration.SeatInfo();
         businessSeatsInfo.setRowCount(10);
         businessSeatsInfo.setSeatsPerRow(6);
 
-        var economySeatsInfo = new SeatConfiguration.EconomySeatInfo();
+        var economySeatsInfo = new SeatConfiguration.SeatInfo();
         economySeatsInfo.setRowCount(20);
         economySeatsInfo.setSeatsPerRow(9);
 
@@ -29,15 +29,15 @@ public final class SeatConfigurationStub {
     }
 
     public static SeatConfiguration getSeatConfigurationIllegalPerRow() {
-        var firstClassSeatsInfo = new SeatConfiguration.FirstClassSeatInfo();
+        var firstClassSeatsInfo = new SeatConfiguration.SeatInfo();
         firstClassSeatsInfo.setRowCount(5);
         firstClassSeatsInfo.setSeatsPerRow(20);
 
-        var businessSeatsInfo = new SeatConfiguration.BusinessSeatInfo();
+        var businessSeatsInfo = new SeatConfiguration.SeatInfo();
         businessSeatsInfo.setRowCount(10);
         businessSeatsInfo.setSeatsPerRow(10);
 
-        var economySeatsInfo = new SeatConfiguration.EconomySeatInfo();
+        var economySeatsInfo = new SeatConfiguration.SeatInfo();
         economySeatsInfo.setRowCount(20);
         economySeatsInfo.setSeatsPerRow(10);
 
