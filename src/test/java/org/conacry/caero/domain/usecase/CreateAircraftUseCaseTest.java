@@ -20,7 +20,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class CreateAircraftUseCaseImplTest {
+class CreateAircraftUseCaseTest {
 
     @Mock
     private AircraftRepository aircraftRepo;
@@ -86,6 +86,8 @@ class CreateAircraftUseCaseImplTest {
         var modelStr = "Model";
         var seatConfig = SeatConfigurationStub.getSeatConfiguration();
         var info = new AircraftCreateInfo(modelStr, seatConfig);
+
+        when(aircraftRepo.existByModel(any(Model.class))).thenReturn(Boolean.FALSE);
 
         var aircraft = createAircraftUseCase.execute(info);
         assertNotNull(aircraft);
